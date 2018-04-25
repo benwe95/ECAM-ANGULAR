@@ -1,0 +1,12 @@
+
+<div *ngIf="category">
+  <h2>{{category | uppercase}} Details</h2>
+  <div>
+    <label>Title:
+      <input [(ngModel)]="category.wording" placeholder="wording">
+    </label>
+  </div>
+
+</div>
+
+<button (click)="goBack()">go Back</button>
