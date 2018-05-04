@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Note Form</h1>
+  <form (ngSubmit)="saveNote()" #noteForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" value="{{note.title}}"
+             required
+             [(ngModel)]="title" name="title"
+             #title_info="ngModel">
+
+      <div [hidden]="title_info.valid || title_info.pristine"
+           class="alert alert-danger">
+        Title is required
+      </div>
+      TODO: remove this: {{title}}
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea rows="10" class="form-control" id="content" value="{{note.content}}"
+                required
+                [(ngModel)]="content" name="content"
+                #content_info="ngModel">
+      </textarea>
+
+      <div [hidden]="content_info.valid || content_info.pristine"
+           class="alert alert-danger">
+        Content is required
+      </div>
+
+      TODO: remove this: {{content}}
+
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-control" id="category"
+              required
+              [(ngModel)]="category" name="category">
+        <option *ngFor="let cat of categories"
+                [value]="cat.wording" >{{cat.wording | uppercase}}</option>
+      </select>
+      TODO: remove this: {{category}}
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Save</button>
+
+  </form>
+</div>

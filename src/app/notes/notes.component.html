@@ -1,8 +1,14 @@
 <h2>My Notes</h2>
 <ul class="notes">
   <li *ngFor="let note of notes">
+    <!-- Debugging tool -->
+    <!--{{note|json}}-->
     <a routerLink="/note/{{ note.id }}">
       <span class="badge">{{note.id}}</span> {{note.title}}
     </a>
     </li>
 </ul>
+<div>
+  <button routerLink="/notes/add">Add</button>
+</div>
+

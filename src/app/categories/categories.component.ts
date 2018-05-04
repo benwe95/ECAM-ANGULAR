@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CATEGORIES} from '../mock-categories';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 
@@ -21,5 +20,4 @@ export class CategoriesComponent implements OnInit {
   getCategories(): void {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
-
 }

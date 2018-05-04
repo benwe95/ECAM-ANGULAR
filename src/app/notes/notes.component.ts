@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Note } from '../note';
-import {NoteService} from '../note.service';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'app-notes',
@@ -18,7 +18,8 @@ export class NotesComponent implements OnInit {
   }
 
   getNotes(): void {
-    this.noteService.getNotes().subscribe(notes => this.notes = notes);
+    this.noteService.getNotes().subscribe(notes => {
+      this.notes = notes;
+    });
   }
-
 }
