@@ -13,6 +13,8 @@ export class CategoryDetailComponent implements OnInit {
 
   @Input() category: Category;
 
+  id = +this.route.snapshot.paramMap.get('id');
+
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
@@ -24,8 +26,7 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   getCategory(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.categoryService.getCategory(id).subscribe(category => this.category = category);
+    this.categoryService.getCategory(this.id).subscribe(category => this.category = category);
   }
 
   goBack(): void {

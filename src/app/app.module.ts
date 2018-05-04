@@ -17,6 +17,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import {NoteService} from './note.service';
 import {CategoryService} from './category.service';
 import { MessageService } from './message.service';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MessageService } from './message.service';
     NoteFormComponent,
     CategoriesComponent,
     CategoryDetailComponent,
-    NoteFormComponent
+    NoteFormComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,

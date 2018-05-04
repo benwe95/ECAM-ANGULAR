@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Category Form</h1>
+  <form (ngSubmit)="saveCategory()" #noteForm="ngForm">
+    <div class="form-group">
+      <label for="wording">Wording</label>
+      <input type="text" class="form-control" id="wording" value="{{category.wording}}"
+             required
+             [(ngModel)]="wording" name="wording"
+             #wording_info="ngModel">
+
+      <div [hidden]="wording_info.valid || wording_info.pristine"
+           class="alert alert-danger">
+        Title is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Save</button>
+
+  </form>
+</div>

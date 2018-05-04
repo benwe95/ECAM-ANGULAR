@@ -9,6 +9,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 
 import { Category } from './category';
+import {Note} from './note';
 
 @Injectable()
 export class CategoryService {
@@ -34,6 +35,23 @@ export class CategoryService {
         tap(_ => this.log(`fetched category id=${id}`)),
         catchError(this.handleError<Category>(`getCategory id=${id}`)
         )
+      );
+  }
+
+  addCategory (category: Category): Observable<Category> {
+    return this.http.post<Category>(this.baseUrl, category)
+      .pipe(
+        tap(_ => this.log(`added category w/ id=${category.id}`)),
+        catchError(this.handleError<Category>('addCategory'))
+      );
+  }
+
+  updateCategory (category: Category, id: number): Observable<Category> {
+    const updateUrl = `${this.baseUrl}/${id}`;
+    return this.http.put<Category>( updateUrl, category)
+      .pipe(
+        tap(_ => this.log(`updated category id=${category.id}`)),
+        catchError(this.handleError<any>('updateCategory'))
       );
   }
 

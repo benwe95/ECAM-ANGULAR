@@ -1,13 +1,11 @@
-
-<div *ngIf="category">
-  <h2>{{category | uppercase}} Details</h2>
+<div *ngIf="category" xmlns="http://www.w3.org/1999/html">
+  <h2>Category Details</h2>
   <div>
-    <label>Title:
-      <input [(ngModel)]="category.wording" placeholder="wording">
+    <label>Wording:
+      <div>{{category.wording}}</div>
     </label>
   </div>
-
 </div>
 
 <button (click)="goBack()">Back</button>
-<!--<button (click)="save()">Save</button>-->
+<button routerLink="/category/{{id}}/edit">Edit</button>
