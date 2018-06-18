@@ -1,14 +1,61 @@
-<h2>My Notes</h2>
-<ul class="notes">
-  <li *ngFor="let note of notes">
-    <!-- Debugging tool -->
-    <!--{{note|json}}-->
-    <a routerLink="/note/{{ note.id }}">
-      <span class="badge">{{note.id}}</span> {{note.title}}
-    </a>
-    </li>
-</ul>
-<div>
-  <button routerLink="/notes/add">Add</button>
+<div class="container">
+  <div class="row">
+    <h2>My Notes</h2>
+    <button type="button" class="btn btn-secondary" routerLink="/notes/add">Add</button>
+  </div>
+
+  <ul class="note-list">
+      <li *ngFor="let note of notes"
+          [class.selected]="note === selectedNote"
+          (click)="onSelect(note)">
+
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">{{note.title}}</h4>
+                <div class = "date">{{note.updateDate | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+              </div>
+
+              <div [hidden]="note.id != selectedNote.id">
+                <div class="panel-body">
+                  <div class = "content">{{note.content}}</div>
+                  <div class = "category">
+                    <span>Category: </span>{{note.category.wording}}
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" routerLink="/note/{{note.id}}/edit">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="deleteNote()">Delete</button>
+              </div>
+            </div>
+          </div>
+      </li>
+  </ul>
 </div>
+
+
+<!-- This directive <app-note-detail [note]="selectedNote"> will be filled with the template of
+     NoteDetailComponent which has the selector 'app-note-detail'.
+
+     [note]="selectedNote" is an Angular PROPERTY BINDING
+     It's a 'one way data binding' from the selectedNote property of the NoteComponent (PARENT)
+     to the note property of the target element, which maps to the note property
+     of the NoteDetailComponent (CHILD).
+
+     The NoteDetailComponent use @Input note:Note; to retrieve the value of the selectedNote !
+
+     /!\ NO MORE NEEDED -> the details of the note is displayed by another route
+
+<app-note-detail [note]="selectedNote"></app-note-detail>  !-->
+
+
+
+<!--<ul class="notes">
+  <li *ngFor="let note of notes">
+    <a routerLink="/note/{{ note.id }}">
+      <h2 class="note-title">{{note.title}}</h2>
+    </a>
+    <div class="date">{{note.updateDate | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+  </li>
+</ul>
+!-->
 

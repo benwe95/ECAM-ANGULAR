@@ -1,5 +1,6 @@
+<!-- the *ngIf instruction only displays the content if there is a note !-->
 <div *ngIf="note" xmlns="http://www.w3.org/1999/html">
-  <h2>Note Details</h2>
+<!--  <h2>Note Details</h2>
   <div>
     <label>Title:
       <div>{{note.title}}</div>
@@ -10,7 +11,10 @@
       <div>{{note.content}}</div>
     </label>
   </div>
-</div>
 
 <button (click)="goBack()">Back</button>
-<button routerLink="/note/{{id}}/edit">Edit</button>
+<button routerLink="/note/{{note.id}}/edit">Edit</button>
+<button (click)="delete()">Delete</button>
+!-->
+ {{note.content}}
+</div>

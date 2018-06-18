@@ -8,11 +8,10 @@
              [(ngModel)]="title" name="title"
              #title_info="ngModel">
 
-      <div [hidden]="title_info.valid || title_info.pristine"
+      <div [hidden]="title_info.valid || title_info.untouched"
            class="alert alert-danger">
         Title is required
       </div>
-      TODO: remove this: {{title}}
     </div>
 
     <div class="form-group">
@@ -27,9 +26,6 @@
            class="alert alert-danger">
         Content is required
       </div>
-
-      TODO: remove this: {{content}}
-
     </div>
 
     <div class="form-group">
@@ -38,12 +34,13 @@
               required
               [(ngModel)]="category" name="category">
         <option *ngFor="let cat of categories"
-                [value]="cat.wording" >{{cat.wording | uppercase}}</option>
+                [value]="cat.id" >{{cat.wording | uppercase}}</option>
       </select>
-      TODO: remove this: {{category}}
     </div>
 
     <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Save</button>
 
   </form>
+  <button type="submit" class="btn btn-primary" (click)="goBack()">Cancel</button>
+
 </div>

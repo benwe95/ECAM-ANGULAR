@@ -1,12 +1,52 @@
-<h2>My Categories</h2>
-<ul class="categories">
-  <li *ngFor="let category of categories">
-    <a routerLink="/category/{{ category.id }}">
-      <span class="badge">{{category.id}}</span> {{category.wording}}
+<div class="container">
+  <div class="row">
+      <h2>Categories</h2>
+    <div>
+      <button type="button" class="btn btn-secondary" routerLink="/categories/add">Add</button>
+    </div>
+
+  </div>
+
+  <ul class="note-list">
+    <li *ngFor="let category of categories">
+
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a routerLink="/category/{{ category.id }}/edit">
+            <h4 class="panel-title">{{category.wording}}</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<!-- This directive <app-note-detail [note]="selectedNote"> will be filled with the template of
+     NoteDetailComponent which has the selector 'app-note-detail'.
+
+     [note]="selectedNote" is an Angular PROPERTY BINDING
+     It's a 'one way data binding' from the selectedNote property of the NoteComponent (PARENT)
+     to the note property of the target element, which maps to the note property
+     of the NoteDetailComponent (CHILD).
+
+     The NoteDetailComponent use @Input note:Note; to retrieve the value of the selectedNote !
+
+     /!\ NO MORE NEEDED -> the details of the note is displayed by another route
+
+<app-note-detail [note]="selectedNote"></app-note-detail>  !-->
+
+
+
+<!--<ul class="notes">
+  <li *ngFor="let note of notes">
+    <a routerLink="/note/{{ note.id }}">
+      <h2 class="note-title">{{note.title}}</h2>
     </a>
+    <div class="date">{{note.updateDate | date:'dd/MM/yyyy HH:mm:ss'}}</div>
   </li>
 </ul>
-<div>
-  <button routerLink="/categories/add">Add</button>
-</div>
+!-->
 

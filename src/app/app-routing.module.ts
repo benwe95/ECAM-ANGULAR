@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {NotesComponent} from './notes/notes.component';
-import {CategoriesComponent} from './categories/categories.component';
 import {NoteDetailComponent} from './note-detail/note-detail.component';
-import {CategoryDetailComponent} from './category-detail/category-detail.component';
 import {NoteFormComponent} from './note-form/note-form.component';
+
+import {CategoriesComponent} from './categories/categories.component';
+import {CategoryDetailComponent} from './category-detail/category-detail.component';
 import {CategoryFormComponent} from './category-form/category-form.component';
 
+/* Binds the urls/routes to the correspondent component */
 const routes: Routes = [
   { path: 'notes', component: NotesComponent },
   { path: 'notes/add', component: NoteFormComponent},

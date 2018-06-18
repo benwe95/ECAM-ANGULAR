@@ -10,6 +10,10 @@ import {catchError, tap} from 'rxjs/operators';
 
 import {MessageService} from './message.service';
 
+/* The class is going to provide an injectable service. It will be injected in
+ * app.module.ts as a 'provider' so that every component depending on this module shares the same
+ * instance of the class NoteService.
+ */
 @Injectable()
 export class NoteService {
 
@@ -18,7 +22,10 @@ export class NoteService {
   constructor(private http: HttpClient,
               private messagesService: MessageService) { }
 
-  // WORKING 02/05/2018 17:12
+  /* Retrieving data from a remote server (database) is an 'ASYNCHRONOUS' task
+   * so it should use an Observable response. Every component which wants to get the data
+   * will subscribe to this Observable object and it will be notified when a change comes
+   */
   getNotes(): Observable<Note[]> {
     /*The Http response is converted into an array of note arrays*/
     return this.http.get<Note[]>(this.baseUrl)
@@ -54,6 +61,14 @@ export class NoteService {
       .pipe(
         tap(_ => this.log(`updated note id=${note.id}`)),
         catchError(this.handleError<any>('updateNote'))
+      );
+  }
+
+  delNote(id: number): Observable<any> {
+    const updateUrl = `${this.baseUrl}/${id}`;
+    return this.http.delete( updateUrl)
+      .pipe(
+        catchError(this.handleError<any>('deleteNote'))
       );
   }
 
